@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+stories =  [
+  {content: "wechat devtool is so buggy.", author: "zora"},
+  {content: "there are so many versions of javascript.", author: "zora"},
+]
+
+# stories.each do |story|
+#   Story.create(story)
+# end
+
+Story.create(stories)

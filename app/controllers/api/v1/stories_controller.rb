@@ -3,4 +3,9 @@ class Api::V1::StoriesController < Api::V1::BaseController
     @stories = Story.all
     # render json: @stories
   end
+
+  def show
+    @story = Story.find(params[:id])
+    # render json: @story
+  end
 end

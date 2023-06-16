@@ -2,7 +2,11 @@ class Api::V1::StoriesController < Api::V1::BaseController
   before_action :set_story, only: [ :show, :update, :destroy ]
 
   def index
-    @stories = Story.all
+    if params[:search]
+      @stories = Story.where("content ILIKE ?", "%#{params[:search]}%")
+    else
+      @stories = Story.all
+    end
     # render json: @stories
   end
 
@@ -14,6 +18,7 @@ class Api::V1::StoriesController < Api::V1::BaseController
     @story = Story.new(story_params)
     if @story.save
       render :show, status: :created
+      # redirect_to api_v1_story_path(@story), status: 303
     else
       render_error
     end

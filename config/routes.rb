@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   # get "api/v1/stories" , to: "stories#index"
   namespace :api, default: {format: "json"} do
     namespace :v1 do
-      resources :stories, only: [:index, :show, :create, :update, :destroy]
+      resources :stories, only: [:index, :show, :create, :update, :destroy] do
+        resources :comments, only: [:create]
+        # post 'comments', to: "stories#create_comments"
+      end
     end
   end
 

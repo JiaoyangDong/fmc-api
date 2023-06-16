@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
+# require 'faker'
 stories =  [
   {content: "wechat devtool is so buggy.", author: "zora"},
   {content: "there are so many versions of javascript.", author: "zora"},
@@ -16,3 +16,13 @@ stories =  [
 # end
 
 Story.create(stories)
+
+Story.all.each do |story|
+  (1..3).to_a.sample.times do
+    Comment.create(
+      name: Faker::TvShows::GameOfThrones.character,
+      content: Faker::TvShows::GameOfThrones.quote,
+      story: story
+    )
+  end
+end
